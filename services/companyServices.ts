@@ -3,13 +3,14 @@ import companyModel from "../models/companyModel";
 import employeesModel from "../models/employeesModel";
 const getCompany = async(req:Request,res:Response)=>{
     let textSearch = req.query.textSearch
+    console.log(textSearch,"textSearch company");
+    
     let activePage:any= req.query.activePage
     let limit:any =req.query.limit
     let skip = (activePage - 1)*limit
     let lengthData = await companyModel.countDocuments({name:{$regex: textSearch,$options:'i'}})
     let totalPage = Math.ceil(lengthData/limit)
     let getCompany = await companyModel.find({name:{$regex: textSearch,$options:'i'}}).skip(skip).limit(limit).populate({path:'id_Employee',model: 'employees'})
-    console.log(getCompany,"aaaaaa");
     return {getCompany,totalPage}
 }
 

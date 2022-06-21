@@ -4,6 +4,8 @@ import controllerEmployees from '../controllers/employeesController'
 const apiRouter:express.Router = express.Router();
 
 //get data company
+
+
 apiRouter.get('/company',controllerCompany.getCompany)
 
 //add data company

@@ -12,7 +12,8 @@ const getEmployees = async(req:Request,res:Response,next:NextFunction)=>{
 const addEmployees = async(req:Request,res:Response,next:NextFunction)=>{
     try {
         let addEmployees = await employeesServices.addEmployees(req,res)
-        res.status(200).json(addEmployees)
+        console.log(addEmployees,"addEmployees");
+        res.status(200).json(addEmployees.msg)
     } catch (error) {
         res.send(error)
     }
@@ -30,7 +31,7 @@ const updateEmployees = async(req:Request,res:Response,next:NextFunction)=>{
 const deleteEmployees = async(req:Request,res:Response,next:NextFunction)=>{
     try {
         let deleteEmployees = await employeesServices.deleteEmployees(req,res)
-        res.status(200).json(deleteEmployees)
+        res.status(200).json(deleteEmployees.msg)
     } catch (error) {
         res.send(error)
     }
